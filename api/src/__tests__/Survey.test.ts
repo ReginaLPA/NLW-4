@@ -1,0 +1,43 @@
+import request from "supertest";
+import { app } from "../app";
+
+import createConnection from "../database"
+
+
+describe("Surveys",  () =>{
+    beforeAll(async () => {
+        const connection = await createConnection();
+        await connection.runMigrations();
+    });
+
+    // primeiro teste
+   it("Should be able to create a new survey", async ()=>{
+    const response = await request(app).post("/surveys")
+    .send({
+        title:"title example",
+        description:"Description Exemple"
+    });
+    expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty("id")
+   });
+/*
+   it("Should be able to get all  survey", async ()=>{
+    await request(app).post("/surveys")
+    .send({
+        title:"title example2",
+        description:"Description Exemple2"
+    });
+    const response = await request(app).post("/surveys")
+    expect(response.body.length).toBe(4)
+   });*/
+   
+   it('Should be able to get all surveys', async () => {
+    const response = await request(app)
+      .get('/surveys')
+      
+    expect(response.body.length).toBeGreaterThanOrEqual(1)
+  })
+
+ 
+
+});
