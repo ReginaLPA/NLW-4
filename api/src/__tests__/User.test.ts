@@ -14,7 +14,7 @@ describe("Users",  () =>{
    it("Should be able to create a new user", async ()=>{
     const response = await request(app).post("/users")
     .send({
-        email:"user8@example.com",
+        email:"user10@example.com",
         name:"User Exemple"
     });
     expect(response.status).toBe(201);
