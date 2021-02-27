@@ -1,6 +1,5 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 import { getCustomRepository } from "typeorm";
-import { stringify } from "uuid";
 import { SurveysUsersRepository } from "../repositories/SurveysUsersRepository";
 
 class AnswerController{
@@ -36,4 +35,4 @@ class AnswerController{
         return res.json(surveyUser);
     }
 }
-export { AnswerController }
+export { AnswerController };
